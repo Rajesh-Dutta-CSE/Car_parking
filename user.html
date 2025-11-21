@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User View • Parking Identification System</title>
+  <link rel="stylesheet" href="style.css?v=2" />
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js" defer></script>
+  <script src="firebase-config.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body data-page="user">
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
+    <span class="icon sun">☀</span>
+    <span class="icon moon">🌙</span>
+  </button>
+  <main class="layout">
+    <div class="top-bar">
+      <a href="index.html" class="back-link">← Back to Home</a>
+      <h1>Live Parking Status</h1>
+    </div>
+
+    <section class="panel">
+      <header class="panel-head">
+        <h2>Current Snapshot</h2>
+      </header>
+      <div class="stats" id="userStats"></div>
+    </section>
+
+    <section class="panel search-panel">
+      <div class="search-header">
+        <div>
+          <h2>Find a Slot</h2>
+          <p class="subhead">Type “Slot 3”, “empty slots”, or “nearest empty slot”.</p>
+        </div>
+        <div class="search-controls">
+          <input type="text" id="userSearch" class="search-input" placeholder='Search e.g. "Slot 5" or "VIP empty"' />
+          <button class="btn ghost" id="userSearchClear">Clear</button>
+        </div>
+      </div>
+      <p class="search-hint" id="userSearchHint">Showing all slots.</p>
+    </section>
+
+    <section class="panel forecast-panel">
+      <div class="panel-head">
+        <h2>Today’s Rush Outlook</h2>
+        <p class="subhead">Based on AI predictions from recent parking activity.</p>
+      </div>
+      <div class="forecast-grid" id="userForecast">
+        <div class="forecast-card highlight">
+          <p class="forecast-label">Expected waiting time</p>
+          <p class="forecast-value" data-forecast-value="wait">--</p>
+          <p class="forecast-meta" data-forecast-meta="wait">Connect Firebase</p>
+        </div>
+        <div class="forecast-card">
+          <p class="forecast-label">Rush probability</p>
+          <p class="forecast-value" data-forecast-value="rush">--</p>
+          <p class="forecast-meta" data-forecast-meta="rush">Connect Firebase</p>
+        </div>
+        <div class="forecast-card">
+          <p class="forecast-label">Quiet hour</p>
+          <p class="forecast-value" data-forecast-value="empty">--</p>
+          <p class="forecast-meta" data-forecast-meta="empty">Connect Firebase</p>
+        </div>
+      </div>
+      <p class="forecast-hint" id="userForecastStatus">Waiting for Firebase data…</p>
+    </section>
+
+    <section class="panel chat-panel">
+      <div class="panel-head">
+        <h2>AI Assistant</h2>
+        <p class="subhead">Ask about availability, VIP slots, or where to park.</p>
+      </div>
+      <div class="chat-container">
+        <div class="chat-messages" id="userChatMessages" aria-live="polite" aria-label="Chat conversation"></div>
+        <form class="chat-input-row" id="userChatForm">
+          <input
+            type="text"
+            id="userChatInput"
+            class="chat-input"
+            placeholder='Ask e.g. “Nearest empty slot?”'
+            autocomplete="off"
+            aria-label="Ask the assistant"
+          />
+          <button type="submit" class="btn">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Parking Map</h2>
+        <p class="subhead">Green slots are available, red slots are occupied.</p>
+        <div class="legend">
+          <div class="legend-item">
+            <span class="legend-pill type-normal"></span> Normal
+          </div>
+          <div class="legend-item">
+            <span class="legend-pill type-vip"></span> VIP
+          </div>
+          <div class="legend-item">
+            <span class="legend-pill type-handicapped"></span> Handicapped
+          </div>
+        </div>
+      </div>
+      <div class="slot-grid" id="userSlotGrid"></div>
+    </section>
+  </main>
+</body>
+</html>
+
+
+
+
+
